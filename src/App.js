@@ -8,11 +8,16 @@ function App() {
   const [error, setError] = useState(false);
   const [list, setList] = useState(new Values('#f15025').all(10));
 
-  console.log(list)
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputColor)
+
+    try {
+      let colorList = new Values(inputColor).all(10);
+      setList(colorList)
+    } catch(error) {
+      setError(true);
+      console.log(error.message)
+    }    
   }
 
   return (
