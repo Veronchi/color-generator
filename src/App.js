@@ -6,14 +6,14 @@ import Values from 'values.js'
 function App() {
   const [inputColor, setInputColor] = useState('');
   const [error, setError] = useState(false);
-  const [list, setList] = useState(new Values('#f15025').all(10));
+  const [colorList, setColorList] = useState(new Values('#f15025').all(10));
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
       let colorList = new Values(inputColor).all(10);
-      setList(colorList)
+      setColorList(colorList)
     } catch(error) {
       setError(true);
       console.log(error.message)
@@ -33,7 +33,9 @@ function App() {
         </form>
       </section>
       <section className='colors'>
-        <SingleColor />
+        {colorList.map((colorItem, id) => {
+          return <SingleColor key={`color${id}`} color={colorItem}/>
+        })}
       </section>
     </React.Fragment>
   );
