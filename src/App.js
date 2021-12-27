@@ -14,10 +14,10 @@ function App() {
     try {
       let colorList = new Values(inputColor).all(10);
       setColorList(colorList)
-    } catch(error) {
+    } catch (error) {
       setError(true);
       console.log(error.message)
-    }    
+    }
   }
 
   return (
@@ -25,16 +25,18 @@ function App() {
       <section className='container'>
         <h3>color generator</h3>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input type='text' placeholder='#f15025'
+          <input
+            type='text' placeholder='#f15025'
             className={error ? 'error' : 'null'}
             value={inputColor}
-            onChange={(e) => setInputColor(e.target.value)}></input>
+            onChange={(e) => setInputColor(e.target.value)}
+          />
           <button type='submit' className='btn'>submit</button>
         </form>
       </section>
       <section className='colors'>
         {colorList.map((colorItem, id) => {
-          return <SingleColor key={`color${id}`} color={colorItem}/>
+          return <SingleColor key={`color${id}`} {...colorItem} />
         })}
       </section>
     </React.Fragment>
